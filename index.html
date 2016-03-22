@@ -9,7 +9,7 @@
 
     <link rel="stylesheet" href="css/main.css">
 </head>
-<body>
+<body onload="_on_load()">
     <header>
         <div class="layout-wrap">
             <a href="#"><img src="img/logo-netcraft.svg" alt="netcraft"></a>
@@ -21,7 +21,7 @@
     </header>
 
     <section class="page-body layout-wrap">
-        <div class="notifications"></div>
+        <div class="notifications" id="notification-file"></div>
 
         <nav>
             <div class="nav-section">
@@ -90,33 +90,38 @@
 
         <section class="tabs">
             <ul>
-                <li><a href="#quick-reports" >Quick Reports</a></li>
-                <li><a href="#my-folders">My Folders</a></li>
-                <li><a href="#my-team-folders">My Team Folders</a></li>
-                <li><a href="#public-folders">Public Folders</a></li>
+                <li><a href="#quick-reports"><span class="icon-tab1"></span> Quick Reports</a></li>
+                <li><a href="#my-folders"><span class="icon-tab2"></span>My Folders</a></li>
+                <li><a href="#my-team-folders"><span class="icon-tab3"></span>My Team Folders</a></li>
+                <li><a href="#public-folders"><span class="icon-tab4"></span>Public Folders</a></li>
             </ul>
 
             <div id="quick-reports-tab">
-                <select name="sites" id="sites-sel">
-                    <option value="English" selected="">EN</option>
-                    <option value="Deutsh">DE</option>
-                    <option value="Hebrew">HE</option>
-                    <option value="Russian">RU</option>
-                    <option value="Espaniol">ES</option>
+                <select class="sites-sel" onchange="updateiframe()">
                 </select>
                 <input type="checkbox" class="settings-checkbox" id="settings-checkbox1" checked="checked" />
                 <label class="settings" for="settings-checkbox1"></label>
-                <a href="#" class="link-arrow"></a>
+                <a class="link-arrow" target="_blank" id="QR-arrow" href="#"></a>
                 <div class="reports-list-wrap">
                     <div class="report">
                         <h5 class="report-num">Report 1:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="name-input" type="text" id="name1" />
+                            <input class="site-input" type="text" id="name1" autofocus />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please fill out this field</p>
+                            </div>
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="url-input" type="url" id="url1"  />
+                            <input  class="site-input" type="url" id="url1"  />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please enter a URL</p>
+                            </div>
                         </div>
 
                     </div>
@@ -124,32 +129,48 @@
                         <h5 class="report-num">Report 2:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="name-input" type="text" id="name2"  />
+                            <input class="site-input" type="text" id="name2" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please fill out this field</p>
+                            </div>
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="url-input" type="url" id="url2"  />
-                        </div>
-                        <div class="error">
-                            <div class="error-tri"></div>
-                            <div class="error-icon">!</div>
-                            <p>Please enter a URL</p>
-                        </div>
+                            <input class="site-input" type="url" id="url2" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please enter a URL</p>
+                            </div>
+                    </div>
                     </div>
                     <div class="report">
                         <h5 class="report-num">Report 3:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="name-input" type="text" id="name3" />
+                            <input class="site-input" type="text" id="name3" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please fill out this field</p>
+                            </div>
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="url-input" type="url" id="url3"/>
+                            <input class="site-input" type="url" id="url3"/>
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please enter a URL</p>
+                            </div>
                         </div>
                     </div>
                     <a class="cancel" onclick="closesettings()">Cancel</a>
                     <a class="save" onclick="getsitesinfo()">save</a>
                 </div>
+                <iframe hidden class="site-iframe"></iframe>
             </div>
 
             <div id="my-folders-tab">
