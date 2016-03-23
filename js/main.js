@@ -163,15 +163,15 @@ function Pressbtn2(key) {
 
 document.querySelector('#quick-reports-tab .save').addEventListener("keydown", restore_tab1,false);
 function restore_tab1(key) {
-    
-    if (key.keyCode == 9) {
-        document.getElementById("focus-gr1").focus();
+    var keyCode = key.keyCode;
+    if (keyCode == 9) {
+        focus_name1();
     }
 }
 document.querySelector('#my-team-folders-tab .save').addEventListener("keydown", restore_tab2);
 function restore_tab2(key) {
     if (key.keyCode == 9) {
-        document.getElementById("focus-gr2").focus();
+        focus_name4();
     }
 
 }
