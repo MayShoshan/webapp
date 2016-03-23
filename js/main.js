@@ -5,7 +5,7 @@ function _on_load() {
     updateinput2();
     updateselect2();
     updateiframe2();
-    var ajaxnotifications = function (notif) {
+    /*var ajaxnotifications = function (notif) {
 
         var Data = notif;
         var element = document.getElementById("notification-file");
@@ -14,7 +14,29 @@ function _on_load() {
     };
 
     var ajax_set = { method: 'GET', done: ajaxnotifications };
-    UTILS.ajax('./data/config.json', ajax_set)
+    UTILS.ajax('./data/config.json', ajax_set)*/
+    var xhr = new XMLHttpRequest();
+    xhr.open('GET', './data/config.json');
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            var status = xhr.status;
+            if ((status >= 200 && status < 300) || status === 304) {
+                try {
+                    var jsonData = JSON.parse(xhr.responseText);
+                    document.getElementById("notification-file").innerHTML = jsonData.notification;
+                    document.getElementById("notification-file").className = "notifications show";
+                }
+                catch (err) {
+                    console.log(err.message);
+                }
+
+            } else {
+
+                console.log(xhr.responseText);
+            }
+        }
+    }
+    xhr.send(null);
 }
 /*****switch tabs*****/
 changetab();
