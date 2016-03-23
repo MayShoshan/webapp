@@ -179,6 +179,79 @@
              </div>
 
             <div id="my-team-folders-tab">
+                <select class="sites-sel" onchange="updateiframe2()"></select>
+                <input type="checkbox" class="settings-checkbox" id="settings-checkbox2" checked="checked" />
+                <label class="settings" for="settings-checkbox2"></label>
+                <a class="link-arrow" target="_blank" id="QR-arrow2" href="#"></a>
+                <div class="reports-list-wrap">
+                    <div class="report">
+                        <h5 class="report-num">Report 4:</h5>
+                        <div class="form-wrap">
+                            <label>Name</label>
+                            <input class="site-input" type="text" id="name4" autofocus />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please fill out this field</p>
+                            </div>
+                        </div>
+                        <div class="form-wrap">
+                            <label>URL </label>
+                            <input class="site-input" type="url" id="url4" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please enter a URL</p>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="report">
+                        <h5 class="report-num">Report 5:</h5>
+                        <div class="form-wrap">
+                            <label>Name</label>
+                            <input class="site-input" type="text" id="name5" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please fill out this field</p>
+                            </div>
+                        </div>
+                        <div class="form-wrap">
+                            <label>URL </label>
+                            <input class="site-input" type="url" id="url5" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please enter a URL</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="report">
+                        <h5 class="report-num">Report 6:</h5>
+                        <div class="form-wrap">
+                            <label>Name</label>
+                            <input class="site-input" type="text" id="name6" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please fill out this field</p>
+                            </div>
+                        </div>
+                        <div class="form-wrap">
+                            <label>URL </label>
+                            <input class="site-input" type="url" id="url6" />
+                            <div hidden class="error">
+                                <div class="error-tri"></div>
+                                <div class="error-icon">!</div>
+                                <p>Please enter a URL</p>
+                            </div>
+                        </div>
+                    </div>
+                    <a class="cancel" onclick="closesettings2()">Cancel</a>
+                    <a class="save" onclick="getsitesinfo2()">save</a>
+        </div>
+        <iframe hidden class="site-iframe"></iframe>
             </div>
 
             <div id="public-folders-tab">

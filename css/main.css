@@ -405,7 +405,7 @@ nav .nav-section:nth-child(3)
     display:block;
 }
 /****************reports tab*****************88*/
-#quick-reports-tab
+#quick-reports-tab,#my-team-folders-tab
 {
     position:relative;
 }
