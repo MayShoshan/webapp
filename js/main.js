@@ -5,16 +5,6 @@ function _on_load() {
     updateinput2();
     updateselect2();
     updateiframe2();
-    /*var ajaxnotifications = function (notif) {
-
-        var Data = notif;
-        var element = document.getElementById("notification-file");
-        element.innerHTML = Data.notification;
-        element.className = "notifications show";
-    };
-
-    var ajax_set = { method: 'GET', done: ajaxnotifications };
-    UTILS.ajax('./data/config.json', ajax_set)*/
     var xhr = new XMLHttpRequest();
     xhr.open('GET', './data/config.json');
     xhr.onreadystatechange = function () {
@@ -22,8 +12,8 @@ function _on_load() {
             var status = xhr.status;
             if ((status >= 200 && status < 300) || status === 304) {
                 try {
-                    var jsonData = JSON.parse(xhr.responseText);
-                    document.getElementById("notification-file").innerHTML = jsonData.notification;
+                    var Data = JSON.parse(xhr.responseText);
+                    document.getElementById("notification-file").innerHTML = Data.notification;
                     document.getElementById("notification-file").className = "notifications show";
                 }
                 catch (err) {
@@ -37,6 +27,14 @@ function _on_load() {
         }
     }
     xhr.send(null);
+    
+   
+}
+function focus_name1() {
+    document.getElementById("name1").focus();
+}
+function focus_name4() {
+    document.getElementById("name4").focus();
 }
 /*****switch tabs*****/
 changetab();
@@ -48,6 +46,7 @@ function changetab() {
     }
     if(location.hash=="#quick-reports")
     {
+       
         document.getElementById("quick-reports-tab").className = "show-tab";
         document.getElementById("my-folders-tab").className = "hide-tab";
         document.getElementById("my-team-folders-tab").className = "hide-tab";
@@ -59,6 +58,7 @@ function changetab() {
 
     }
     if (location.hash == "#my-folders") {
+        
         document.getElementById("quick-reports-tab").className = "hide-tab";
         document.getElementById("my-folders-tab").className = "show-tab";
         document.getElementById("my-team-folders-tab").className = "hide-tab";
@@ -69,6 +69,7 @@ function changetab() {
         document.querySelector(".tabs>ul li:nth-child(4) a").className = "unselected-tab";
     }
     if (location.hash == "#my-team-folders") {
+       
         document.getElementById("quick-reports-tab").className = "hide-tab";
         document.getElementById("my-folders-tab").className = "hide-tab";
         document.getElementById("my-team-folders-tab").className = "show-tab";
@@ -80,6 +81,7 @@ function changetab() {
 
     }
     if (location.hash == "#public-folders") {
+        
         document.getElementById("quick-reports-tab").className = "hide-tab";
         document.getElementById("my-folders-tab").className = "hide-tab";
         document.getElementById("my-team-folders-tab").className = "hide-tab";
@@ -92,8 +94,8 @@ function changetab() {
 }
 
 //switch with keyboard
-document.addEventListener("keydown",keyboardPress,false );
-function keyboardPress(key) {
+document.addEventListener("keydown",arrowsPressed,false );
+function arrowsPressed(key) {
     var next_tab="#quick-reports";
     if (key.keyCode == 37) {
         if (location.hash == "#quick-reports") {
@@ -108,8 +110,8 @@ function keyboardPress(key) {
         if (location.hash == "#public-folders") {
             next_tab = "#my-team-folders";
         }
+        location.hash = next_tab;
     }
-
     if(key.keyCode == 39)
     {
         if (location.hash == "#quick-reports") {
@@ -124,20 +126,55 @@ function keyboardPress(key) {
         if (location.hash === "#public-folders") {
             next_tab = "#quick-reports";
         }
-       
+        location.hash = next_tab;
     }
-    location.hash = next_tab;
+    
+}
+
+document.getElementById("name1").addEventListener("keydown", Pressbtn1, false);
+document.getElementById("name2").addEventListener("keydown", Pressbtn1, false);
+document.getElementById("name3").addEventListener("keydown", Pressbtn1, false);
+document.getElementById("url1").addEventListener("keydown", Pressbtn1, false);
+document.getElementById("url2").addEventListener("keydown", Pressbtn1, false);
+document.getElementById("url3").addEventListener("keydown", Pressbtn1, false);
+document.getElementById("name4").addEventListener("keydown", Pressbtn2, false);
+document.getElementById("name5").addEventListener("keydown", Pressbtn2, false);
+document.getElementById("name6").addEventListener("keydown", Pressbtn2, false);
+document.getElementById("url4").addEventListener("keydown", Pressbtn2, false);
+document.getElementById("url5").addEventListener("keydown", Pressbtn2, false);
+document.getElementById("url6").addEventListener("keydown", Pressbtn2, false);
+function Pressbtn1(key) {
+    if (key.keyCode == 13) // enter
+        getsitesinfo();
+
+    if (key.keyCode==27) //escape
+        document.querySelector('#settings-checkbox1').checked = false;            
+    }
+function Pressbtn2(key) {
+    if (key.keyCode == 13) // enter
+        getsitesinfo2();
+
+    if (key.keyCode == 27) //escape
+        document.querySelector('#settings-checkbox2').checked = false;
+       
 }
 
 
 
+document.querySelector('#quick-reports-tab .save').addEventListener("keydown", restore_tab1,false);
+function restore_tab1(key) {
+    
+    if (key.keyCode == 9) {
+        document.getElementById("focus-gr1").focus();
+    }
+}
+document.querySelector('#my-team-folders-tab .save').addEventListener("keydown", restore_tab2);
+function restore_tab2(key) {
+    if (key.keyCode == 9) {
+        document.getElementById("focus-gr2").focus();
+    }
 
-
-
-
-
-
-
+}
 
 
 
@@ -147,9 +184,17 @@ function keyboardPress(key) {
 
 /*****URL check****/
 function isUrl(url) {
-
+    //fix if needed
+    var url_val = url.value;
+    var http = url_val.substring(0, 7);
+    var https = url_val.substring(0, 8);
+    if ((http != "http://") && (https != "https://"))
+    {
+        alert("wrong");
+        url.value = "http://" + url_val;
+    }
     var urlPatt = new RegExp("(http|https)://[\w-]+(\.[\w-]+)+([\w.,@?^=%&amp;:/~+#-]*[\w@?^=%&amp;/~+#-])?");
-    if (!urlPatt.test(url)) {
+    if (!urlPatt.test(url.value)) {
         return false;
     }
     return true;
@@ -158,10 +203,12 @@ function isUrl(url) {
 function closesettings()
 {
     document.getElementById("settings-checkbox1").checked = false;
+   
 }
 function closesettings2()
 {
     document.getElementById("settings-checkbox2").checked = false;
+    
 }
 /*******clear errors **********/
 function clear_errors()
@@ -207,7 +254,9 @@ function updateinput() {
             document.querySelector('#name' + (i + 1)).value = Sites[i].Name;
             document.querySelector('#url' + (i + 1)).value = Sites[i].Url;
         }
+        
     }
+    
 }
 function updateinput2() {
     if (localStorage.getItem('Data') != null) {
@@ -217,7 +266,9 @@ function updateinput2() {
             document.querySelector('#name' + (i + 4)).value = Sites2[i].Name;
             document.querySelector('#url' + (i + 4)).value = Sites2[i].Url;
         }
+        
     }
+   
 }
 function updateiframe() {
 
@@ -303,7 +354,7 @@ function getsitesinfo() {
         }
         else {
             //name valid and url invalid
-            if ((isUrl(url1.value) == false) && (name1.value != "")) {
+            if ((isUrl(url1) == false) && (name1.value != "")) {
                 url1.nextElementSibling.hidden = false;
                 url1.className = "site-input error-input";
                 valid = false;
@@ -320,7 +371,7 @@ function getsitesinfo() {
         }
         else {
             //name valid and url invalid
-            if ((isUrl(url2.value) == false) && (name2.value != "")) {
+            if ((isUrl(url2) == false) && (name2.value != "")) {
                 url2.nextElementSibling.hidden = false;
                 url2.className = "site-input error-input";
                 valid = false;
@@ -337,7 +388,7 @@ function getsitesinfo() {
         }
         else {
             //name valid and url invalid
-            if ((isUrl(url3.value) == false) && (name3.value != "")) {
+            if ((isUrl(url3) == false) && (name3.value != "")) {
                 url3.nextElementSibling.hidden = false;
                 url3.className = "site-input error-input";
                 valid = false;
@@ -386,7 +437,7 @@ function getsitesinfo2() {
         }
         else {
             //name valid and url invalid
-            if ((isUrl(url4.value) == false) && (name4.value != "")) {
+            if ((isUrl(url4) == false) && (name4.value != "")) {
                 url4.nextElementSibling.hidden = false;
                 url4.className = "site-input error-input";
                 valid = false;
@@ -403,7 +454,7 @@ function getsitesinfo2() {
         }
         else {
             //name valid and url invalid
-            if ((isUrl(url5.value) == false) && (name5.value != "")) {
+            if ((isUrl(url5) == false) && (name5.value != "")) {
                 url5.nextElementSibling.hidden = false;
                 url5.className = "site-input error-input";
                 valid = false;
@@ -420,7 +471,7 @@ function getsitesinfo2() {
         }
         else {
             //name valid and url invalid
-            if ((isUrl(url6.value) == false) && (name6.value != "")) {
+            if ((isUrl(url6) == false) && (name6.value != "")) {
                 url6.nextElementSibling.hidden = false;
                 url6.className = "site-input error-input";
                 valid = false;

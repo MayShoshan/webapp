@@ -99,15 +99,16 @@
             <div id="quick-reports-tab">
                 <select class="sites-sel" onchange="updateiframe()">
                 </select>
-                <input type="checkbox" class="settings-checkbox" id="settings-checkbox1" checked="checked" />
-                <label class="settings" for="settings-checkbox1"></label>
+                <input type="checkbox" class="settings-checkbox" id="settings-checkbox1" />
+                <label class="settings" for="settings-checkbox1" onclick="focus_name1()"></label>
                 <a class="link-arrow" target="_blank" id="QR-arrow" href="#"></a>
                 <div class="reports-list-wrap">
                     <div class="report">
                         <h5 class="report-num">Report 1:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="site-input" type="text" id="name1" placeholder="Site Name" autofocus />
+                            <div hidden id="focus-gr1" tabindex="1"></div>
+                            <input tabindex="2" class="site-input" type="text" id="name1" placeholder="Site Name" autofocus />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -116,7 +117,7 @@
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="site-input" type="url" id="url1" placeholder="Site URL" />
+                            <input tabindex="3" class="site-input" type="url" id="url1" placeholder="Site URL" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -129,7 +130,7 @@
                         <h5 class="report-num">Report 2:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="site-input" type="text" id="name2" placeholder="Site Name" />
+                            <input tabindex="4" class="site-input" type="text" id="name2" placeholder="Site Name" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -138,7 +139,7 @@
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="site-input" type="url" id="url2" placeholder="Site URL" />
+                            <input tabindex ="5" class="site-input" type="url" id="url2" placeholder="Site URL" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -150,7 +151,7 @@
                         <h5 class="report-num">Report 3:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="site-input" type="text" id="name3" placeholder="Site Name" />
+                            <input tabindex="6" class="site-input" type="text" id="name3" placeholder="Site Name" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -159,7 +160,7 @@
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="site-input" type="url" id="url3" placeholder="Site URL" />
+                            <input tabindex="7" class="site-input" type="url" id="url3" placeholder="Site URL" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -167,8 +168,8 @@
                             </div>
                         </div>
                     </div>
-                    <a class="cancel" onclick="closesettings()">Cancel</a>
-                    <a class="save" onclick="getsitesinfo()">save</a>
+                    <a tabindex="8" class="cancel" onclick="closesettings()">Cancel</a>
+                    <a tabindex="9" class="save" onclick="getsitesinfo()">save</a>
                 </div>
                 <iframe hidden class="site-iframe"></iframe>
             </div>
@@ -180,15 +181,16 @@
 
             <div id="my-team-folders-tab">
                 <select class="sites-sel" onchange="updateiframe2()"></select>
-                <input type="checkbox" class="settings-checkbox" id="settings-checkbox2" checked="checked" />
-                <label class="settings" for="settings-checkbox2"></label>
+                <input type="checkbox" class="settings-checkbox" id="settings-checkbox2" />
+                <label class="settings" for="settings-checkbox2" onclick="focus_name4()"></label>
                 <a class="link-arrow" target="_blank" id="QR-arrow2" href="#"></a>
                 <div class="reports-list-wrap">
                     <div class="report">
                         <h5 class="report-num">Report 4:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="site-input" type="text" id="name4" placeholder="Site Name" autofocus />
+                            <div hidden id="focus-gr2" tabindex="1"></div>
+                            <input tabindex="2" class="site-input" type="text" id="name4" placeholder="Site Name" autofocus />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -197,7 +199,7 @@
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="site-input" type="url" id="url4" placeholder="Site URL" />
+                            <input tabindex="3" class="site-input" type="url" id="url4" placeholder="Site URL" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -210,7 +212,7 @@
                         <h5 class="report-num">Report 5:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="site-input" type="text" id="name5" placeholder="Site Name" />
+                            <input tabindex="4" class="site-input" type="text" id="name5" placeholder="Site Name" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -219,7 +221,7 @@
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="site-input" type="url" id="url5" placeholder="Site URL" />
+                            <input tabindex="5" class="site-input" type="url" id="url5" placeholder="Site URL" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -231,7 +233,7 @@
                         <h5 class="report-num">Report 6:</h5>
                         <div class="form-wrap">
                             <label>Name</label>
-                            <input class="site-input" type="text" id="name6" placeholder="Site Name" />
+                            <input tabindex="6" class="site-input" type="text" id="name6" placeholder="Site Name" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -240,7 +242,7 @@
                         </div>
                         <div class="form-wrap">
                             <label>URL </label>
-                            <input class="site-input" type="url" id="url6" placeholder="Site URL" />
+                            <input tabindex="7" class="site-input" type="url" id="url6" placeholder="Site URL" />
                             <div hidden class="error">
                                 <div class="error-tri"></div>
                                 <div class="error-icon">!</div>
@@ -248,8 +250,8 @@
                             </div>
                         </div>
                     </div>
-                    <a class="cancel" onclick="closesettings2()">Cancel</a>
-                    <a class="save" onclick="getsitesinfo2()">save</a>
+                    <a tabindex="8" class="cancel" onclick="closesettings2()">Cancel</a>
+                    <a tabindex="9" class="save" onclick="getsitesinfo2()">save</a>
         </div>
         <iframe hidden class="site-iframe"></iframe>
             </div>
