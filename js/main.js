@@ -90,6 +90,61 @@ function changetab() {
         document.querySelector(".tabs>ul li:nth-child(4) a").className = "selected-tab";
     }
 }
+
+//switch with keyboard
+document.addEventListener("keydown",keyboardPress,false );
+function keyboardPress(key) {
+    var next_tab="#quick-reports";
+    if (key.keyCode == 37) {
+        if (location.hash == "#quick-reports") {
+            next_tab = "#public-folders";
+        }
+        if (location.hash == "#my-folders") {
+            next_tab = "#quick-reports";
+        }
+        if (location.hash == "#my-team-folders") {
+            next_tab = "#my-folders";
+        }
+        if (location.hash == "#public-folders") {
+            next_tab = "#my-team-folders";
+        }
+    }
+
+    if(key.keyCode == 39)
+    {
+        if (location.hash == "#quick-reports") {
+            next_tab= "#my-folders";
+        }
+        if (location.hash == "#my-folders") {
+            next_tab = "#my-team-folders";
+        }
+        if (location.hash == "#my-team-folders") {
+            next_tab = "#public-folders";
+        }
+        if (location.hash === "#public-folders") {
+            next_tab = "#quick-reports";
+        }
+       
+    }
+    location.hash = next_tab;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 /*****URL check****/
 function isUrl(url) {
 
@@ -182,7 +237,7 @@ function updateiframe2() {
         document.getElementById("QR-arrow2").href = document.querySelector("#my-team-folders-tab .sites-sel").value;
     }
     else
-        document.querySelector("#quick-reports-tab .site-iframe").hidden = true;
+        document.querySelector("#my-team-folders-tab .site-iframe").hidden = true;
 }
 function updateselect() {
 
@@ -302,8 +357,6 @@ function getsitesinfo() {
             var jobject = { Sites: Sites };
             localStorage.setItem('Data', JSON.stringify(jobject));
         }
-
-
 
         document.getElementById("settings-checkbox1").checked = false;
         updateinput();
